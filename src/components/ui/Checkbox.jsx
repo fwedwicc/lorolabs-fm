@@ -15,8 +15,8 @@ const Checkbox = ({ variant, name, value, id, label, styles, checkboxStyles, ico
             value={value}
             className="peer sr-only"
           />
-          <div className="size-5 rounded-md border border-neutral-300 bg-neutral-50 flex items-center justify-center peer-checked:bg-red-800 peer-checked:border-red-800 transition-colors duration-200 z-10">
-            <TbCheck className="stroke-4 size-3.5 text-neutral-50 opacity-100" />
+          <div className="size-5 rounded-md border border-neutral-200 bg-white flex items-center justify-center peer-checked:bg-[#CA2840] peer-checked:border-[#CA2840] transition-colors duration-200 z-10">
+            <TbCheck className="stroke-4 size-3.5 text-white opacity-100" />
           </div>
           {children}
         </label>

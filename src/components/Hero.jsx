@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, GradualBlur } from './ui'
-import { HeroBg, HeroBlur } from '../assets/hero'
+import { HeroBg, HeroBlur, WebAppDevIllustration, ITConsultingIllustration, AIContentIllustration } from '../assets/hero'
 import { LoroIconWhite } from '../assets'
 import { TbSend, TbDeviceDesktopCode, TbBulb, TbSparkles } from 'react-icons/tb'
 
@@ -35,20 +35,23 @@ const Hero = () => {
           </div>
 
           <div className='grid grid-cols-3 gap-3 mt-8'>
-            <div className='p-5 rounded-3xl h-70 border border-white/20'>
-              <TbDeviceDesktopCode className='text-2xl text-indigo-300' />
-              <h4>Web & App Development</h4>
-              <p>Custom solutions for your digital needs and goals Custom solutions figital needs and goals..</p>
+            <div className='relative p-5 space-y-2.75 rounded-3xl h-70 border border-white/20'>
+              <TbDeviceDesktopCode className='text-2xl text-indigo-400 z-10' />
+              <h4 className='text-white'>Web & App Development</h4>
+              <p className='text-neutral-300'>Custom solutions for your digital needs and goals Custom solutions figital needs and goals.</p>
+              <img src={WebAppDevIllustration} alt="Web App Development" className='absolute bottom-0 -translate-x-1/2 left-1/2 h-auto' />
             </div>
-            <div className='p-5 rounded-3xl h-70 border border-white/20'>
-              <TbBulb className='text-2xl text-violet-300' />
-              <h4>Web & App Development</h4>
-              <p>Custom solutions for your digital needs and goals Custom solutions figital needs and goals..</p>
+            <div className='relative p-5 space-y-2.75 rounded-3xl h-70 border border-white/20'>
+              <TbBulb className='text-2xl text-indigo-400 z-10' />
+              <h4 className='text-white'>IT Consulting</h4>
+              <p className='text-neutral-300'>Technology guidance to help you pick the right tools and plan your roadmap without costly mistakes.</p>
+              <img src={ITConsultingIllustration} alt="IT Consulting" className='absolute bottom-0 -translate-x-1/2 left-1/2 h-auto' />
             </div>
-            <div className='p-5 rounded-3xl h-70 border border-white/20'>
-              <TbSparkles className='text-2xl text-rose-300' />
-              <h4>Web & App Development</h4>
-              <p>Custom solutions for your digital needs and goals Custom solutions figital needs and goals..</p>
+            <div className='relative p-5 space-y-2.75 rounded-3xl h-70 border border-white/20'>
+              <TbSparkles className='text-2xl text-rose-400 z-10' />
+              <h4 className='text-white'>AI Content</h4>
+              <p className='text-neutral-300'>AI-generated photos, videos, and hero animations that give your brand a look your competitors cannot replicate.</p>
+              <img src={AIContentIllustration} alt="AI Content" className='absolute bottom-0 -translate-x-1/2 left-1/2 h-auto' />
             </div>
           </div>
         </div>

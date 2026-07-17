@@ -1,8 +1,9 @@
 import React from 'react'
 
 const Button = ({ variant = 'primary', href, children, label, onClick, type, disabled, className, style }) => {
-  const primary = 'h-10 px-4 bg-[#FF6254] text-white'
+  const primary = 'h-10 px-4 bg-[#CA2840] text-white'
   const secondary = 'h-10 px-4 bg-transparent border border-[#FF6254] text-[#FF6254]'
+  const ghost = 'h-10 px-4 bg-transparent text-[#FF6254] hover:bg-neutral-500'
   const outline = 'h-10 px-4 border border-white text-white bg-transparent hover:bg-white/10 hover:backdrop-blur-md hover:border-white/80'
   const text = 'h-10 px-4 bg-transparent'
 
