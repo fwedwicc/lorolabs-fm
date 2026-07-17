@@ -1,12 +1,41 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { NoteBg } from '../assets/note'
 import { LorolabsLogo } from '../assets'
 import { TbQuoteFilled } from 'react-icons/tb'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Note = () => {
+  const sectionRef = useRef(null)
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        containerRef.current,
+        { width: '86%' },
+        {
+          width: '100%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            scrub: 1,
+            markers: false,
+            start: 'top 80%',
+            end: 'bottom 40%',
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className='h-screen p-2'>
-      <div className='relative size-full h-full flex items-center justify-center rounded-3xl overflow-hidden'>
+    <section ref={sectionRef} className='h-screen flex items-center justify-center p-2'>
+      <div ref={containerRef} className='relative size-full h-full flex items-center justify-center rounded-3xl overflow-hidden'>
         <div
           className='absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed'
           style={{ backgroundImage: `url(${NoteBg})` }}

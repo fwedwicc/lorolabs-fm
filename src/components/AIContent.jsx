@@ -1,12 +1,39 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Badge, GradualBlur } from './ui'
 import { Image1, Image2, Image3, Image4, Image5, Image6 } from '../assets/ai-content'
-import { TbSend } from 'react-icons/tb'
 import { DotGridLeft, DotGridRight } from '../assets'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const AIContent = () => {
+  const sectionRef = useRef(null)
+  const headingRef = useRef(null)
+  const cardsRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          scrub: 0.8,
+          markers: false,
+          start: 'top 92%',
+          end: 'top 58%',
+          invalidateOnRefresh: true,
+        },
+      })
+
+      tl.fromTo(headingRef.current, { yPercent: 12 }, { yPercent: 0, ease: 'none' }, 0)
+      tl.fromTo(cardsRef.current, { yPercent: 18 }, { yPercent: 0, ease: 'none' }, 0)
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className='relative flex items-center justify-center py-12 overflow-hidden'>
+    <section ref={sectionRef} className='relative flex items-center justify-center py-12 overflow-hidden'>
       <img src={DotGridLeft} alt="Dot Grid Left" className='absolute left-0 top-0 h-auto z-0' />
       <img src={DotGridRight} alt="Dot Grid Right" className='absolute right-0 top-0 h-auto z-0' />
 
@@ -25,13 +52,13 @@ const AIContent = () => {
 
       <div className='w-full max-w-6xl z-20'>
 
-        <div className='flex flex-col items-center gap-2'>
+        <div ref={headingRef} className='flex flex-col items-center gap-2'>
           <Badge variant='neutral' size='sm' label='AI GENERATED' styles='opacity-70' />
           <h2 className='text-neutral-900'>AI Content Creation</h2>
           <p className='text-neutral-600 text-center'>Explore our creative tech projects and innovative app designs.</p>
         </div>
 
-        <div className='grid grid-cols-3 gap-3 mt-8'>
+        <div ref={cardsRef} className='grid grid-cols-3 gap-3 mt-8'>
           <div className='flex flex-col gap-3'>
             <div className='h-52 relative overflow-hidden rounded-2xl'>
               <img src={Image1} alt="AI Illustration" className='absolute inset-0 w-full h-full object-cover z-0' />

@@ -1,12 +1,43 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Button, GradualBlur } from './ui'
 import { HeroBg, HeroBlur, WebAppDevIllustration, ITConsultingIllustration, AIContentIllustration } from '../assets/hero'
 import { LoroIconWhite } from '../assets'
-import { TbSend, TbDeviceDesktopCode, TbBulb, TbSparkles } from 'react-icons/tb'
+import { TbSend, TbDeviceDesktopCode, TbBulb, TbSparkles, TbChevronDown } from 'react-icons/tb'
+import { motion } from 'framer-motion'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Hero = () => {
+  const sectionRef = useRef(null)
+  const contentRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        contentRef.current,
+        { y: 0 },
+        {
+          y: -120,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            scrub: 1,
+            markers: false,
+            start: 'top top',
+            end: 'bottom top',
+            invalidateOnRefresh: true,
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className='h-screen p-2'>
+    <section ref={sectionRef} className='h-screen p-2'>
       <div className='relative size-full h-full flex items-center justify-center rounded-3xl overflow-hidden'>
         <div
           className='absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed'
@@ -24,7 +55,7 @@ const Hero = () => {
           opacity={1}
           zIndex={20}
         />
-        <div className='space-y-4 flex flex-col items-center justify-center w-full max-w-6xl z-30 pt-14'>
+        <div ref={contentRef} className='space-y-4 flex flex-col items-center justify-center w-full max-w-6xl z-30 pt-24'>
           <div className='flex flex-col items-center justify-center gap-2'>
             <img src={LoroIconWhite} alt="Loro Icon" className='w-12 h-auto mb-2' />
             <h1 className='text-center'>Creative Tech Studio for <br /> Innovative Solutions</h1>
@@ -54,6 +85,14 @@ const Hero = () => {
               <img src={AIContentIllustration} alt="AI Content" className='absolute bottom-0 -translate-x-1/2 left-1/2 h-auto' />
             </div>
           </div>
+
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+            className='z-10 mt-2'
+          >
+            <TbChevronDown className='text-2xl text-neutral-300' />
+          </motion.div>
         </div>
 
       </div>

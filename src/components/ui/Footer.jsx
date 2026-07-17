@@ -1,22 +1,71 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { DotGridLeft, DotGridRight } from '../../assets'
 import { LorolabsLogo, LoroIconWhite } from '../../assets'
 import { Button } from './'
 import { TbBrandFacebook, TbBrandInstagram, TbBrandTiktok, TbBrandLinkedin, TbBrandGithub, TbMapPin, TbPhone, TbMail, TbSend } from 'react-icons/tb'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Footer = () => {
+  const sectionRef = useRef(null)
+  const contentRef = useRef(null)
+  const logoRef = useRef(null)
+
   const quickLinks = ['Home', 'About', 'Portfolio', 'Contact']
   const services = ['Web & App Development', 'IT Consulting', 'AI Content Creation']
   const socialLinks = [TbBrandFacebook, TbBrandInstagram, TbBrandTiktok, TbBrandLinkedin, TbBrandGithub]
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        contentRef.current,
+        { yPercent: 12 },
+        {
+          yPercent: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            scrub: 0.7,
+            markers: false,
+            start: 'top 95%',
+            end: 'top 60%',
+            invalidateOnRefresh: true,
+          },
+        }
+      )
+
+      gsap.fromTo(
+        logoRef.current,
+        { scale: 0.3, y: 36 },
+        {
+          scale: 1,
+          y: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            scrub: 0.7,
+            markers: false,
+            start: 'top 95%',
+            end: 'top 60%',
+            invalidateOnRefresh: true,
+          },
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className='relative flex items-center justify-center p-2'>
+    <section ref={sectionRef} className='relative flex items-center justify-center p-2'>
       <div className='relative size-full overflow-hidden rounded-3xl bg-neutral-900 pt-12 pb-9'>
 
         <img src={DotGridLeft} alt="Dot Grid Left" className='pointer-events-none absolute left-0 top-0 z-0 h-auto' />
         <img src={DotGridRight} alt="Dot Grid Right" className='pointer-events-none absolute right-0 top-0 z-0 h-auto' />
 
-        <div className='relative z-20 mx-auto w-full max-w-6xl flex flex-col'>
+        <div ref={contentRef} className='relative z-20 mx-auto w-full max-w-6xl flex flex-col'>
 
           {/*  */}
           <div className='flex items-start justify-between'>
@@ -92,7 +141,7 @@ const Footer = () => {
               <a href='#' className='transition hover:text-white'>Privacy Policy</a>
               <a href='#' className='transition hover:text-white'>Terms &amp; Conditions</a>
             </div>
-            <img src={LoroIconWhite} alt="Loro Labs" className='absolute bottom-[-2.4rem] left-1/2 w-80 h-auto -translate-x-1/2 opacity-10 z-40' />
+            <img ref={logoRef} src={LoroIconWhite} alt="Loro Labs" className='absolute bottom-[-2.4rem] left-1/2 w-80 h-auto -translate-x-1/2 opacity-10 z-40' />
           </div>
         </div>
       </div>

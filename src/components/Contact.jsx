@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Button, Input, Select, Checkbox, Badge } from './ui'
 import { BgCard1 } from '../assets/about'
 import { TbSend, TbMapPin, TbClock, TbMail, TbPhone, TbBrandTelegram } from 'react-icons/tb'
 import { DotGridLeft, DotGridRight, LoroOffice } from '../assets'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Contact = () => {
+  const sectionRef = useRef(null)
+  const leftBlockRef = useRef(null)
+  const formBlockRef = useRef(null)
+
   const contactCards = [
     {
       icon: TbPhone,
@@ -23,12 +31,32 @@ const Contact = () => {
     },
   ]
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          scrub: 0.8,
+          markers: false,
+          start: 'top 92%',
+          end: 'top 58%',
+          invalidateOnRefresh: true,
+        },
+      })
+
+      tl.fromTo(leftBlockRef.current, { yPercent: 14 }, { yPercent: 0, ease: 'none' }, 0)
+      tl.fromTo(formBlockRef.current, { yPercent: 18 }, { yPercent: 0, ease: 'none' }, 0)
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className='relative flex items-center justify-center p-2 py-12'>
+    <section ref={sectionRef} className='relative flex items-center justify-center p-2 py-12'>
       <img src={DotGridLeft} alt="Dot Grid Left" className='pointer-events-none absolute -translate-x-1/2 left-1/2 -bottom-24 z-0 h-auto' />
       <div className='relative flex items-start gap-8 w-full max-w-6xl overflow-hidden'>
 
-        <div className='relative z-10 w-full max-w-[44%] flex-col'>
+        <div ref={leftBlockRef} className='relative z-10 w-full max-w-[44%] flex-col'>
           <div className='space-y-4'>
             <Badge variant='neutral' size='sm' label='CONTACT' styles='inline-block opacity-70' />
             <h2 className='max-w-lg text-neutral-900'>Let&apos;s build something <br /> amazing together.</h2>
@@ -68,7 +96,7 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className='w-full w-full max-w-[56%]'>
+        <div ref={formBlockRef} className='w-full max-w-[56%]'>
           <div className='relative z-10 rounded-3xl bg-[#FDFDFD] border border-[#F0F0F0] p-6'>
             <h4 className='text-neutral-900'>Tell us about your project</h4>
 
