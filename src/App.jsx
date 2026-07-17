@@ -1,5 +1,5 @@
 import React from 'react'
-import { Hero, About, Services, AIContent, Note } from './components'
+import { Hero, About, Services, AIContent, Note, Contact } from './components'
 import { Nav, Footer } from './components/ui'
 import useLenis from './hooks/useLenis.js'
 
@@ -14,6 +14,7 @@ const App = () => {
       <Services />
       <AIContent />
       <Note />
+      <Contact />
       <Footer />
     </main>
   )

@@ -8,7 +8,11 @@ const Hero = () => {
   return (
     <section className='h-screen p-2'>
       <div className='relative size-full h-full flex items-center justify-center rounded-3xl overflow-hidden'>
-        <img src={HeroBg} alt="Hero Background" className='size-full h-full object-cover absolute' />
+        <div
+          className='absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed'
+          style={{ backgroundImage: `url(${HeroBg})` }}
+          aria-hidden='true'
+        />
         <GradualBlur
           target="parent"
           position="bottom"
