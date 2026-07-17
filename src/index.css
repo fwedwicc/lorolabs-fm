@@ -42,6 +42,6 @@ p {
   }
 
   p {
-    @apply lg:text-base !text-sm text-neutral-200;
+    @apply lg:text-base !text-sm text-neutral-200 leading-tight;
   }
 }

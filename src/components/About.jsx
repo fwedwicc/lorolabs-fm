@@ -2,10 +2,14 @@ import React from 'react'
 import { Button } from './ui'
 import { BgCard1, BgCard2 } from '../assets/about'
 import { TbSend } from 'react-icons/tb'
+import { DotGridLeft, DotGridRight } from '../assets'
 
 const About = () => {
   return (
-    <section className='flex items-center justify-center py-12'>
+    <section className='relative flex items-center justify-center py-12'>
+      <img src={DotGridLeft} alt="Dot Grid Left" className='absolute left-0 top-0 h-auto z-0' />
+      <img src={DotGridRight} alt="Dot Grid Right" className='absolute right-0 top-0 h-auto z-0' />
+
       <div className='grid grid-cols-2 gap-6 w-full max-w-6xl'>
 
         <div className='relative border-5 rounded-3xl h-148 bg-white border-neutral-200 overflow-hidden'>

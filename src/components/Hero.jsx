@@ -4,11 +4,10 @@ import { HeroBg, HeroBlur } from '../assets/hero'
 import { LoroIconWhite } from '../assets'
 import { TbSend, TbDeviceDesktopCode, TbBulb, TbSparkles } from 'react-icons/tb'
 
-
 const Hero = () => {
   return (
     <section className='h-screen p-2'>
-      <div className='relative size-full h-full flex items-center justify-center border rounded-3xl overflow-hidden'>
+      <div className='relative size-full h-full flex items-center justify-center rounded-3xl overflow-hidden'>
         <img src={HeroBg} alt="Hero Background" className='size-full h-full object-cover absolute' />
         <GradualBlur
           target="parent"
