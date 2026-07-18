@@ -52,7 +52,7 @@ const Contact = () => {
   }, [])
 
   return (
-    <section ref={sectionRef} className='relative flex items-center justify-center p-2 py-12'>
+    <section id='contact' ref={sectionRef} className='relative flex items-center justify-center p-2 py-12 scroll-mt-28'>
       <img src={DotGridLeft} alt="Dot Grid Left" className='pointer-events-none absolute -translate-x-1/2 left-1/2 -bottom-24 z-0 h-auto' />
       <div className='relative flex items-start gap-8 w-full max-w-6xl overflow-hidden'>
 

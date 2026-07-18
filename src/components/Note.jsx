@@ -34,7 +34,7 @@ const Note = () => {
   }, [])
 
   return (
-    <section ref={sectionRef} className='h-screen flex items-center justify-center p-2'>
+    <section id='note' ref={sectionRef} className='h-screen flex items-center justify-center p-2 scroll-mt-28'>
       <div ref={containerRef} className='relative size-full h-full flex items-center justify-center rounded-3xl overflow-hidden'>
         <div
           className='absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed'

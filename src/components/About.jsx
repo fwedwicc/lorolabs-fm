@@ -34,7 +34,7 @@ const About = () => {
   }, [])
 
   return (
-    <section ref={sectionRef} className='relative flex items-center justify-center py-12'>
+    <section id='about' ref={sectionRef} className='relative flex items-center justify-center py-12 scroll-mt-28'>
       <img src={DotGridLeft} alt="Dot Grid Left" className='absolute left-0 top-0 h-auto z-0' />
       <img src={DotGridRight} alt="Dot Grid Right" className='absolute right-0 top-0 h-auto z-0' />
 

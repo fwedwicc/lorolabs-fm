@@ -34,7 +34,7 @@ const Services = () => {
   }, [])
 
   return (
-    <section ref={sectionRef} className='relative flex items-center justify-center p-2'>
+    <section id='services' ref={sectionRef} className='relative flex items-center justify-center p-2 scroll-mt-28'>
       <div className='relative size-full h-full py-12 bg-neutral-900 flex items-center justify-center rounded-3xl overflow-hidden'>
 
         <img src={DotGridLeft} alt="Dot Grid Left" className='absolute left-0 top-0 h-auto z-0' />
